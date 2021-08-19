@@ -2,7 +2,7 @@ Database role
 =========
 Create database servers
 
-Requirements
+Task
 ------------
 Setting up the mariadb repo
 Installing mariadb
