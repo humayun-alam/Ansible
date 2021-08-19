@@ -1,0 +1,28 @@
+---
+# tasks file for database
+#
+- name: Copy yum repo
+  ansible.builtin.copy:
+    src: mariadb.repo
+    dest: /etc/yum.repos.d/mariadb.repo
+    owner: root
+    group: root
+    mode: '0644'
+  register: copyrepo
+
+- name: makecache
+  command: yum makecache --disablerepo='*' --enablerepo='mariadb'
+  when: copyrepo is succeeded
+  register: makecache
+
+- name: Install MariaDB
+  yum:
+    name:
+      - MariaDB-server
+      - MariaDB-client
+    state: installed 
+  when: makecache is succeeded
+  register: install_db
+  notify:
+   - Start mariadb
+   - Enable mariadb

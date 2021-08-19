@@ -1,0 +1,13 @@
+---
+- hosts: kvm-db-backup
+  gather_facts: "no"
+  become: yes
+  become_user: root
+
+  vars_files:
+    - "vars/private.yml"
+  roles:
+#     - users
+#     - httpd
+     - network
+     - database    

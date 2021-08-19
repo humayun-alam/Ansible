@@ -55,3 +55,6 @@ kvm-lb002
 
 [local]
 127.0.0.1
+
+[db]
+kvm-db-backup
