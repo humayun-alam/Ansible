@@ -39,4 +39,4 @@
   lineinfile:
     path: /etc/crontab
     state: present
-    line: "*  *  *  *  * root /root/scripts/mysqldump.sh"
+    line: "0  *  *  *  * root /root/scripts/mysqldump.sh"
