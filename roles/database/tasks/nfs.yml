@@ -28,13 +28,15 @@
   command: mount -a
   when: fstab_updated is succeeded
 
-- name: Copy file
+- name: Copy script
   copy:
     src: mysqldump.sh
     dest: /root/scripts
     mode: '0755'
   register: copy_script
 
-- name: run script
-  command: sh /root/scripts/mysqldump.sh
-  when: copy_script is succeeded
+- name: cronjob
+  lineinfile:
+    path: /etc/crontab
+    state: present
+    line: "*  *  *  *  * root /root/scripts/mysqldump.sh"
