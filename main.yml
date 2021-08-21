@@ -1,5 +1,5 @@
 ---
-- hosts: kvm-db-backup
+- hosts: kvm-db1
   gather_facts: "no"
   become: yes
   become_user: root
@@ -9,5 +9,5 @@
   roles:
 #     - users
 #     - httpd
-     - network
+#     - network
      - database    

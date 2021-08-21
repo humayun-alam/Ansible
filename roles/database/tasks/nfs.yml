@@ -1,0 +1,40 @@
+---
+
+- name: Install nfs
+  yum: name=nfs-utils state=installed update_cache=true
+  register: nfs_installed
+
+- name: Create directory
+  file:
+    path: "{{ item }}"
+    state: directory
+    mode: '0755'
+  when: nfs_installed is succeeded
+  register: dir_created
+  with_items:
+    - /db-backups
+    - /root/scripts
+
+
+- name: Edit fstab
+  lineinfile:
+    path: /etc/fstab
+    state: present
+    line: kvm-db-backup:/db-backups       /db-backups     nfs     nosuid,rw,sync,hard,intr  0  0
+  when: dir_created is succeeded
+  register: fstab_updated
+
+- name: mount directory
+  command: mount -a
+  when: fstab_updated is succeeded
+
+- name: Copy file
+  copy:
+    src: mysqldump.sh
+    dest: /root/scripts
+    mode: '0755'
+  register: copy_script
+
+- name: run script
+  command: sh /root/scripts/mysqldump.sh
+  when: copy_script is succeeded

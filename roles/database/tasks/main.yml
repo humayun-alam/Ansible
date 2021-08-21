@@ -1,6 +1,8 @@
 ---
 # tasks file for database
-#
+
+- include_tasks: nfs.yml 
+
 - name: Copy yum repo
   ansible.builtin.copy:
     src: mariadb.repo

@@ -44,17 +44,18 @@
 
 192.168.1.80
 [web]
-#vb2
-#kvm-lb001
 kvm-web001
 kvm-web002
-#kvm-deploy
 
 [lb]
+kvm-lb001
 kvm-lb002
 
 [local]
 127.0.0.1
 
 [db]
+kvm-db1
+kvm-db2
+kvm-db3
 kvm-db-backup
