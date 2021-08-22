@@ -40,3 +40,4 @@
     path: /etc/crontab
     state: present
     line: "0  *  *  *  * root /root/scripts/mysqldump.sh"
+  when: copy_script is succeeded
