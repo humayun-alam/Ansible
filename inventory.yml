@@ -14,4 +14,4 @@ kvm-lb002
 kvm-db1
 kvm-db2
 kvm-db3
-kvm-db-backup
+#kvm-db-backup

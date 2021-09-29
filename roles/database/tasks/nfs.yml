@@ -30,14 +30,27 @@
 
 - name: Copy script
   copy:
-    src: mysqldump.sh
+    src: mysqlbackup.sh
     dest: /root/scripts
     mode: '0755'
   register: copy_script
 
+#- name: cronjob_remove
+#  lineinfile:
+#    path: /etc/crontab
+#    state: absent
+#    line: "0  *  *  *  * root /root/scripts/mysqlbackup.sh"
+#  when: copy_script is succeeded
+
+
+
 - name: cronjob
-  lineinfile:
-    path: /etc/crontab
-    state: present
-    line: "0  *  *  *  * root /root/scripts/mysqldump.sh"
+  cron:
+    name: mysqlbackup
+    weekday: "*"
+    minute: "*"
+    hour: "*"
+    user: root
+    job: /root/scripts/mysqlbackup.sh
+    cron_file: mysqlbackupjob
   when: copy_script is succeeded
