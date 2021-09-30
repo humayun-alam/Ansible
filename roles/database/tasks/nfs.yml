@@ -46,7 +46,8 @@
 
 - name: cronjob
   cron:
-    name: mysqlbackup
+    name: PATH
+    env: yes
     weekday: "*"
     minute: "*/2"
     hour: "*"
@@ -54,3 +55,6 @@
     job: /root/scripts/mysqlbackup.sh
     cron_file: mysqlbackupjob
   when: copy_script is succeeded
+
+
+
