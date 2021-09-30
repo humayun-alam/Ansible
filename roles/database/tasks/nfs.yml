@@ -47,7 +47,7 @@
 - name: cronjob
   cron:
     name: mysqlbackup
-    weekday: "*"
+    weekday: "*/2"
     minute: "*"
     hour: "*"
     user: root
