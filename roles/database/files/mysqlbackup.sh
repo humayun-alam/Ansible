@@ -17,8 +17,8 @@ password=password
 # Number of days to store the backup 
 keep_day=30
 
-sqlfile=$backupfolder/all-database-$(date +%d-%m-%Y_%H:%M:%S).sql
-zipfile=$backupfolder/all-database-$(date +%d-%m-%Y_%H:%M:%S).zip 
+sqlfile=$backupfolder/all-database-$(date +%d-%m-%Y_%H:%M).sql
+zipfile=$backupfolder/all-database-$(date +%d-%m-%Y_%H:%M).zip 
 
 #Create a backup folder for host if it does not exist
 
