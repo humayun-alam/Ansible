@@ -1,0 +1,32 @@
+---
+# tasks for ssmtp
+
+- name: Install epel
+  yum:
+    name: epel-release
+    state: installed
+
+- name: refresh yum repolist for epel
+  command: yum repolist
+  register: refresh_repolist
+
+- name: Install ssmtp
+  yum:
+    name: ssmtp
+    state: installed
+  when: refresh_repolist is succeeded
+  register: ssmtp_installed
+
+
+- name: Copy ssmtp config
+  ansible.builtin.copy:
+    src: ssmtp.conf
+    dest: /etc/ssmtp/ssmtp.conf
+    owner: root
+    group: root
+    mode: '0644'
+  when: ssmtp_installed is succeeded
+
+
+
+

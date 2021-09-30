@@ -15,7 +15,6 @@
     - /db-backups
     - /root/scripts
 
-
 - name: Edit fstab
   lineinfile:
     path: /etc/fstab
@@ -35,26 +34,22 @@
     mode: '0755'
   register: copy_script
 
-#- name: cronjob_remove
-#  lineinfile:
-#    path: /etc/crontab
-#    state: absent
-#    line: "0  *  *  *  * root /root/scripts/mysqlbackup.sh"
-#  when: copy_script is succeeded
-
-
-
 - name: cronjob
   cron:
-    name: PATH
-    env: yes
+    name: mysqldump
     weekday: "*"
-    minute: "*/2"
-    hour: "*"
+    minute: "0"
+    hour: "21"
     user: root
     job: /root/scripts/mysqlbackup.sh
     cron_file: mysqlbackupjob
+    state: present
   when: copy_script is succeeded
 
 
-
+- name: add path variable to cronjob
+  cronvar:
+    name: PATH
+    value: /sbin:/bin:/usr/sbin:/usr/bin
+    cron_file: mysqlbackupjob
+    state: present

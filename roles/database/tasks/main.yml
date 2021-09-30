@@ -3,6 +3,8 @@
 
 - include_tasks: nfs.yml 
 
+- include_tasks: ssmtp.yml
+
 - name: Copy yum repo
   ansible.builtin.copy:
     src: mariadb.repo
@@ -22,9 +24,22 @@
     name:
       - MariaDB-server
       - MariaDB-client
+      - zip
+      - unzip
+#      - epel-release
     state: installed 
   when: makecache is succeeded
   register: install_db
   notify:
    - Start mariadb
    - Enable mariadb
+
+#- name: refresh yum repolist for epel
+#  command: yum repolist
+#  register: refresh_repolist
+#
+#- name: Install ssmtp
+#  yum:
+#    name: ssmtp
+#    state: installed
+#  when: refresh_repolist is succeeded 
