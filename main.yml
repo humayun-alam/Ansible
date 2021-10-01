@@ -1,11 +1,12 @@
 ---
-- hosts: web
+- hosts: db
   gather_facts: "no"
   become: yes
   become_user: root
 
   vars_files:
     - "vars/private.yml"
+    - "vars/vault.yml"
   roles:
 #     - users
 #     - httpd
