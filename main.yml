@@ -1,5 +1,5 @@
 ---
-- hosts: db
+- hosts: web
   gather_facts: "no"
   become: yes
   become_user: root
