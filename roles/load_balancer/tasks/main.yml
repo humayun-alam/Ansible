@@ -24,7 +24,7 @@
 - name: add haproxy config
   template:
 #    src: /mytemplates/haproxy.cfg.j2 
-    src: /home/halam/git_stuff/httpd_installation_ansible/roles/load_balancer/templates/haproxy.cfg.j2
+    src: haproxy.cfg.j2
     dest: /etc/haproxy/haproxy.cfg
     owner: root
     group: root
