@@ -38,7 +38,7 @@
   cron:
     name: mysqldump
     weekday: "*"
-    minute: "54"
+    minute: "0"
     hour: "21"
     user: root
     job: /root/scripts/mysqlbackup.sh
