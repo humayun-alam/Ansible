@@ -1,5 +1,5 @@
 ---
-- hosts: db
+- hosts: kvm-db4
   gather_facts: "no"
   become: yes
   become_user: root
@@ -8,7 +8,7 @@
     - "vars/private.yml"
     - "vars/vault.yml"
   roles:
-#     - users
+     - users
 #     - httpd
-#     - network
+     - network
      - database    

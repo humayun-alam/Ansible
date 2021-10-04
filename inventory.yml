@@ -7,7 +7,8 @@ all:
         kvm-db1:
         kvm-db2:
         kvm-db3:
-#        kvm-db-backup
+        kvm-db4:
+        kvm-db-backup:
     web:
       hosts:
         kvm-web001:
