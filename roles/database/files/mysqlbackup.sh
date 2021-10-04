@@ -1,5 +1,6 @@
 ##Creating a simple database backup. The backup is done to a nfs share mounted locally on each database server to a database backup server
-
+##It will send an email once the backup fails or is successful. Backups older than 30 days will be deleted.
+# I have used cronjob to do a daily backup.
 
 #!/bin/bash
 
@@ -21,7 +22,6 @@ sqlfile=$backupfolder/all-database-$(date +%d-%m-%Y_%H:%M).sql
 zipfile=$backupfolder/all-database-$(date +%d-%m-%Y_%H:%M).zip 
 
 #Create a backup folder for host if it does not exist
-
 if [ ! -d "$backupfolder" ]
 then
 	mkdir $backupfolder/ && echo "Directory created: $backupfolder"
